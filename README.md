@@ -6,11 +6,10 @@
 
 ## Installation and Usage
 
-This project was realised on **Ubuntu 20.04 LTS**, with **SDL 2.0.10** and compiled with **GCC 9.4.0**. Depending on the changes, it may not work on future version. If you want to download and test our project, follow these steps (The step `sudo ./install_SDL2.sh` is only necessary if you don't have `SDL2` and `SDL2_ttf` installed):
+This project was realised on **Ubuntu 20.04 LTS**, with **SDL 2.0.10** and compiled with **GCC 9.4.0**. Depending on the changes, it may not work on future version. If you want to download and test our project, follow these steps (The SDL2 installation step is only necessary if you don't have `SDL2` and `SDL2_ttf`):
 ```
-$ git clone git@github.com:adut24/Raise_the_terrain.git
-$ cd Raise_the_terrain
-$ sudo ./install_SDL2.sh
+$ git clone https://github.com/adut24/Raise_the_terrain.git && cd Raise_the_terrain
+$ sudo apt install libsdl2-dev && sudo apt install libsdl2-ttf-dev
 $ gcc *.c -o terrain `sdl2-config --cflags` `sdl2-config --libs` -lSDL2_ttf -lm
 $ ./terrain z_axis
 ```
