@@ -11,7 +11,7 @@ This project was realised on **Ubuntu 20.04 LTS**, with **SDL 2.0.10** and compi
 $ git clone https://github.com/adut24/Raise_the_terrain.git && cd Raise_the_terrain
 $ sudo apt install libsdl2-dev && sudo apt install libsdl2-ttf-dev
 $ gcc *.c -o terrain `sdl2-config --cflags` `sdl2-config --libs` -lSDL2_ttf -lm
-$ ./terrain z_axis
+$ ./terrain test/z_axis
 ```
 
 # Description

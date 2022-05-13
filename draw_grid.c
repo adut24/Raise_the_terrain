@@ -23,9 +23,8 @@ void init_2d_grid(SDL_Point grid[8][8])
  * @grid: grid to convert
  * @alt: grid used to store the z axises
  * @file: file containing the z axises
- * @nb: number of arguments passed to the program
  */
-void init_iso_grid(SDL_Point grid[8][8], int alt[8][8], char *file, int nb)
+void init_iso_grid(SDL_Point grid[8][8], int alt[8][8], char *file)
 {
 	char line[1000];
 	char *value;
@@ -33,31 +32,30 @@ void init_iso_grid(SDL_Point grid[8][8], int alt[8][8], char *file, int nb)
 	float wX, wY, inc = 0.65;
 	FILE *fd;
 
-	if (nb == 2)
+	fd = fopen(file, "r");
+	if (!fd)
 	{
-		fd = fopen(file, "r");
-		i = 0;
-		while (fgets(line, 1000, fd))
-		{
-			value = strtok(line, " ");
-			for (j = 0; j < 8; j++)
-			{
-				alt[j][i] = atoi(value);
-				value = strtok(NULL, " ");
-			}
-			i++;
-		}
-		fclose(fd);
+		fprintf(stderr, "Error: can't read the file.\n");
+		exit(EXIT_FAILURE);
 	}
+	i = 0;
+	while (fgets(line, 1000, fd))
+	{
+		value = strtok(line, " ");
+		for (j = 0; j < 8; j++)
+		{
+			alt[j][i] = atoi(value);
+			value = strtok(NULL, " ");
+		}
+		i++;
+	}
+	fclose(fd);
 
 	for (i = 0; i < 8; i++)
 	{
 		for (j = 0; j < 8; j++)
 		{
-			if (nb == 2)
-				z = alt[i][j];
-			else
-				z = 0;
+			z = alt[i][j];
 			wX = inc * grid[i][j].x - inc * grid[i][j].y + 430;
 			wY = (1 - inc) * grid[i][j].x + (1 - inc) * grid[i][j].y - z + 100;
 			grid[i][j].x = wX;
